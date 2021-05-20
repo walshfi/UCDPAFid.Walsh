@@ -25,9 +25,4 @@ print (SP_500_stockprices.info)
 
 SP_500_stockprices_symbol = SP_500_stockprices.sort_values('symbol')
 
-# Print the first and last few rows of the sorted dataframe.
-
-print(SP_500_stockprices_symbol.head())
-print(SP_500_stockprices_symbol.tail())
-
 
