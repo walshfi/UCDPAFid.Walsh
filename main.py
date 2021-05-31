@@ -5,9 +5,11 @@
 
 import requests
 
-Data = requests.get("https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=AAPL&apikey=xxxx8")
+Data = requests.get("https://www.alphavantage.co/query?function=EARNINGS&symbol=AAPL&apikey=xxxxxxxxxx")
 
 AAPL = Data.json()
+
+print(AAPL)
 
 # Import a CSV file into a Pandas Dataframe
 # Import Pandas
@@ -86,7 +88,6 @@ AMZN.set_index('date', inplace = True)
 print(AMZN.info)
 print(AMZN.head())
 
-
 #Show the data from Dec 2015 to Dec 2016
 print(FB.loc["2015-12":"2016-12"])
 
@@ -126,6 +127,76 @@ AMZN_open=np.array(AMZN['open'])
 # Using boolean array select only where the open prices are over 180
 boolean_array = FB_open > 180
 print(FB_open[boolean_array])
+
+# Import matplotlib
+
+import matplotlib.pyplot as plt
+
+# Set up a plot of the closing stock prices for FB showing both closing and opening stocks
+
+# Initalise a Figure and Axes
+fig, ax = plt.subplots()
+ax.set_title('Facebook closing stock')
+
+# Add the time-series for "close" to the plot
+ax.plot(FB.index,FB['close'])
+
+# Set the x-axis label to YEAR
+ax.set_xlabel('Year')
+
+# Set the Y label to CLOSE
+ax.set_ylabel('CLOSE')
+
+fig.set_size_inches([7, 9])
+fig.savefig('figure_1_1.png')
+
+# Initalize a Figure and Axes
+fig, ax = plt.subplots()
+ax.set_title('Facebook closing and volume')
+# Plot the close variable in blue
+ax.plot(FB.index, FB["close"], color='blue')
+
+# Create a twin Axes that shares the x-axis
+ax2 = ax.twinx()
+
+# Plot the volume in red
+ax2.plot(FB.index, FB["volume"], color='red')
+
+fig.set_size_inches([7, 9])
+fig.savefig('figure_1_2.png')
+
+# Initalise a Figure and Axes
+fig, ax = plt.subplots()
+ax.set_title('Amazon closing stock')
+
+# Add the time-series for "close" to the plot
+ax.plot(AMZN.index,AMZN['close'])
+
+# Set the x-axis label to YEAR
+ax.set_xlabel('Year')
+
+# Set the Y label to CLOSE
+ax.set_ylabel('CLOSE')
+
+fig.set_size_inches(5, 7)
+fig.savefig('figure_1_3.png')
+
+# Initalize a Figure and Axes
+fig, ax = plt.subplots()
+ax.set_title('Amazon close and volume')
+# Plot the close variable in blue
+ax.plot(AMZN.index, AMZN["close"], color='blue')
+
+# Create a twin Axes that shares the x-axis
+ax2 = ax.twinx()
+
+# Plot the volume in red
+ax2.plot(AMZN.index, AMZN["volume"], color='red')
+
+fig.set_size_inches([7, 9])
+fig.savefig('figure_1_4.png')
+
+
 
 
 
